@@ -3,6 +3,10 @@ import numpy as np
 
 cap = cv2.VideoCapture('test.mp4')
 
+frame_width = int(cap.get(3))
+frame_height = int(cap.get(4))
+out = cv2.VideoWriter('result.mp4',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
+
 while True:
     ret,frame = cap.read()
 
@@ -23,11 +27,12 @@ while True:
 
     other = cv2.bitwise_and(frame, frame, mask=mask_inv)
     dst = cv2.bitwise_or(res, other)
-    cv2.imshow("Other", dst)
-
+    #cv2.imshow("Other", dst)
+    out.write(dst)
     if cv2.waitKey(1)&0xFF == 27:
         break
 
 cap.release()
+out.release()
 cv2.destroyAllWindows()
 
