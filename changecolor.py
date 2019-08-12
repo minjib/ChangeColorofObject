@@ -27,7 +27,7 @@ cap = cv2.VideoCapture(filename)
 
 frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
-out = cv2.VideoWriter('result.avi',cv2.VideoWriter_fourcc(*'DIVX'), 10, (frame_width,frame_height))
+out = cv2.VideoWriter('result.avi',cv2.VideoWriter_fourcc(*'DIVX'), 30, (frame_width,frame_height))
 
 while True:
     ret,frame = cap.read()
